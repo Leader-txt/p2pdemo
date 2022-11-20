@@ -1,0 +1,8 @@
+D:\Documents\Code\p2pdemo\p2pdemo-client\bin\Debug\p2pdemo-client.exe.config
+D:\Documents\Code\p2pdemo\p2pdemo-client\bin\Debug\p2pdemo-client.exe
+D:\Documents\Code\p2pdemo\p2pdemo-client\bin\Debug\p2pdemo-client.pdb
+D:\Documents\Code\p2pdemo\p2pdemo-client\obj\Debug\p2pdemo-client.csproj.AssemblyReference.cache
+D:\Documents\Code\p2pdemo\p2pdemo-client\obj\Debug\p2pdemo-client.csproj.SuggestedBindingRedirects.cache
+D:\Documents\Code\p2pdemo\p2pdemo-client\obj\Debug\p2pdemo-client.csproj.CoreCompileInputs.cache
+D:\Documents\Code\p2pdemo\p2pdemo-client\obj\Debug\p2pdemo-client.exe
+D:\Documents\Code\p2pdemo\p2pdemo-client\obj\Debug\p2pdemo-client.pdb
