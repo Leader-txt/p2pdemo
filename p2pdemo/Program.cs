@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,25 +13,26 @@ namespace p2pdemo
     {
         static void Main(string[] args)
         {
-            var server = new UdpClient(new IPEndPoint(IPAddress.Any,333));
-            var clients = new IPEndPoint[2];
+            AppDomain.CurrentDomain.UnhandledException += (o, e) =>
+            {
+                Console.WriteLine(e.ExceptionObject);
+                Console.ReadLine();
+            };
+            Console.WriteLine("请输入监听端口");
+            var server = new UdpClient(int.Parse(Console.ReadLine()));
+            Console.WriteLine("服务器已启动");
             while (true)
             {
-                if(clients[0] == null)
-                {
-                    server.Receive(ref clients[0]);
-                    Console.WriteLine($"client0:{clients[0]}");
-                }
-                else
-                {
-                    server.Receive(ref clients[1]);
-                    Console.WriteLine($"client1:{clients[1]}");
-                    var data0 = Encoding.UTF8.GetBytes(clients[1].ToString()+":0");
-                    var data1 = Encoding.UTF8.GetBytes(clients[0].ToString()+":1");
-                    server.Send(data0, data0.Length, clients[0]);
-                    server.Send(data1, data1.Length, clients[1]);
-                    clients[0]=clients[1]=null;
-                }
+                var user0=new IPEndPoint(IPAddress.Any, 0);
+                var user1=new IPEndPoint(IPAddress.Any, 0);
+                server.Receive(ref user0);
+                Console.WriteLine(user0);
+                server.Receive(ref user1);
+                Console.WriteLine(user1);
+                var data = Encoding.UTF8.GetBytes(user1.ToString());
+                server.Send(data, data.Length, user0);
+                data = Encoding.UTF8.GetBytes(user0.ToString());
+                server.Send(data, data.Length, user1);
             }
         }
     }
